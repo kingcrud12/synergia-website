@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* =============================================================
+   SYNERGIA INTERNATIONAL — Tokens issus de la charte graphique
+   4. Palette de couleurs / 5. Typographies web
+   ============================================================= */
+@theme {
+  --color-or: #d9a21b;
+  --color-or-clair: #e8bf5c;
+  --color-or-sombre: #b8850f;
+  --color-noir: #17191d;
+  --color-anthracite: #303238;
+  --color-gris: #f5f5f3;
+  --color-blanc: #ffffff;
+
+  --font-titre: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-texte: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
+
+  --spacing-section: 6.5rem;
+}
+
+:root {
+  --trame: color-mix(in srgb, var(--color-or) 22%, transparent);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-blanc);
+  color: var(--color-anthracite);
+  font-family: var(--font-texte);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-or);
+  color: var(--color-noir);
+}
+
+/* Titres — Cormorant Garamond (charte §5) */
+.titre {
+  font-family: var(--font-titre);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+/* Surtitre à filet doré — signature institutionnelle de la marque */
+.surtitre {
+  font-family: var(--font-texte);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-or);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.surtitre::before {
+  content: "";
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Trame « réseau international » (§8 / §10) */
+.trame-reseau {
+  background-image:
+    radial-gradient(circle at 1px 1px, var(--trame) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+
+.degrade-nuit {
+  background:
+    radial-gradient(120% 90% at 78% 12%, rgba(217, 162, 27, 0.26) 0%, transparent 58%),
+    radial-gradient(90% 70% at 8% 92%, rgba(217, 162, 27, 0.1) 0%, transparent 60%),
+    linear-gradient(160deg, #0f1114 0%, var(--color-noir) 45%, var(--color-anthracite) 100%);
+}
+
+@keyframes monte {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.anim-monte {
+  animation: monte 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
