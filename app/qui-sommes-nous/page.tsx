@@ -4,150 +4,107 @@ import Section, { TitreSection } from "@/components/Section";
 import Visuel from "@/components/Visuel";
 import Bouton from "@/components/Bouton";
 import CartePilier from "@/components/CartePilier";
-import { chiffres, piliers, valeurs } from "@/lib/contenu";
+import { Fleche } from "@/components/Icones";
+import { association, chiffres, marque, programmes, valeurs } from "@/lib/contenu";
 
 export const metadata: Metadata = {
   title: "Qui sommes-nous",
   description:
-    "Synergia International : un réseau institutionnel qui relie l'Afrique, l'Europe et la France autour du développement, de l'échange et de la production.",
+    "Synergia International, association dédiée aux échanges culturels entre la France, l'Afrique et l'Europe.",
 };
-
-const etapes = [
-  {
-    numero: "01",
-    titre: "Comprendre le terrain",
-    texte:
-      "Diagnostic partagé avec les acteurs locaux : besoins réels, contraintes, ressources disponibles et jeux d'acteurs.",
-  },
-  {
-    numero: "02",
-    titre: "Rassembler les bons acteurs",
-    texte:
-      "Identification et mise en relation des institutions, opérateurs et financeurs dont l'engagement est nécessaire.",
-  },
-  {
-    numero: "03",
-    titre: "Structurer l'engagement",
-    texte:
-      "Cadre juridique, gouvernance, calendrier et indicateurs : ce qui est promis devient contractuel et mesurable.",
-  },
-  {
-    numero: "04",
-    titre: "Rester jusqu'à la livraison",
-    texte:
-      "Pilotage d'exécution, évaluation à mi-parcours et publication des résultats, y compris lorsqu'ils déçoivent.",
-  },
-];
 
 export default function QuiSommesNous() {
   return (
     <>
       <Hero
-        surtitre="Qui sommes-nous"
+        surtitre="Découvrir l'association"
         titre={
           <>
-            Un réseau au service
+            Créer le lien,
             <br />
-            <span className="italic text-or">des impacts concrets</span>
+            <span className="italic text-or">unir les talents</span>
           </>
         }
-        chapo="Synergia International est une organisation de mise en relation et d'accompagnement de projets entre l'Afrique, l'Europe et la France. Nous intervenons là où les intentions communes doivent devenir des engagements opérationnels."
+        chapo={association.paragraphes[0]}
       />
 
       <Section>
         <div className="grid items-start gap-14 lg:grid-cols-2">
           <div>
             <TitreSection
-              surtitre="Notre mission"
-              titre="Relier ce qui produit de la valeur"
-              chapo="Trop de projets s'arrêtent entre l'intention et l'exécution, faute d'un tiers capable de tenir la durée. C'est précisément la place que nous occupons."
+              surtitre="Notre ambition"
+              titre="Faire de chaque rencontre une découverte"
+              chapo={association.paragraphes[1]}
             />
-            <p className="mt-6 text-[0.95rem] leading-[1.8] text-anthracite/75">
-              Nous ne sommes ni un bailleur ni un cabinet de conseil. Nous
-              sommes un opérateur de réseau : nous rassemblons les compétences,
-              les capitaux et les autorisations nécessaires, puis nous
-              accompagnons le projet jusqu'à sa livraison effective.
+            <p className="titre mt-8 text-[1.6rem] italic leading-snug text-or-sombre lg:text-[1.9rem]">
+              {association.conclusion}
             </p>
-            <p className="mt-4 text-[0.95rem] leading-[1.8] text-anthracite/75">
-              Nos équipes sont installées dans les territoires où les projets se
-              déroulent. Cette présence continue est la condition de notre
-              utilité.
-            </p>
+            <dl className="mt-12 grid grid-cols-2 gap-8 border-t border-noir/10 pt-10">
+              {chiffres.map((c) => (
+                <div key={c.libelle}>
+                  <dt className="sr-only">{c.libelle}</dt>
+                  <dd>
+                    <span className="titre block text-[2.2rem] text-or-sombre">
+                      {c.valeur}
+                    </span>
+                    <span className="mt-1 block text-[0.72rem] font-medium uppercase tracking-[0.16em] text-anthracite/65">
+                      {c.libelle}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
           <Visuel
-            ambiance="business"
-            legende="Business & partenariats"
+            src="/programmes/heritage.jpg"
+            alt="Rassemblement intergénérationnel et multiculturel sur une place publique"
             className="aspect-[4/5] w-full"
           />
         </div>
-      </Section>
-
-      <Section fond="gris">
-        <TitreSection
-          surtitre="Notre méthode"
-          titre="Quatre temps, sans raccourci"
-          centre
-        />
-        <ol className="mt-14 grid gap-px bg-noir/10 sm:grid-cols-2 lg:grid-cols-4">
-          {etapes.map((e) => (
-            <li key={e.numero} className="bg-gris p-8">
-              <span className="titre block text-[2.6rem] leading-none text-or/35">
-                {e.numero}
-              </span>
-              <h3 className="titre mt-5 text-[1.45rem] text-noir">{e.titre}</h3>
-              <p className="mt-3 text-[0.86rem] leading-[1.75] text-anthracite/70">
-                {e.texte}
-              </p>
-            </li>
-          ))}
-        </ol>
       </Section>
 
       <Section fond="noir">
         <TitreSection surtitre="Nos valeurs" titre="Ce qui nous engage" invert />
         <div className="mt-14 grid gap-px bg-blanc/10 sm:grid-cols-2">
           {valeurs.map((v) => (
-            <div key={v.titre} className="bg-transparent p-9">
+            <div key={v.titre} className="p-9">
               <h3 className="titre text-[1.6rem] text-blanc">{v.titre}</h3>
-              <p className="mt-3 text-[0.88rem] leading-[1.8] text-blanc/60">
+              <p className="mt-3 text-[0.88rem] leading-[1.8] text-blanc/65">
                 {v.texte}
               </p>
             </div>
           ))}
         </div>
-        <dl className="mt-16 grid grid-cols-2 gap-8 border-t border-blanc/10 pt-12 lg:grid-cols-4">
-          {chiffres.map((c) => (
-            <div key={c.libelle}>
-              <dt className="sr-only">{c.libelle}</dt>
-              <dd>
-                <span className="titre block text-[2.8rem] text-or">
-                  {c.valeur}
-                </span>
-                <span className="mt-1 block text-[0.72rem] font-medium uppercase tracking-[0.16em] text-blanc/55">
-                  {c.libelle}
-                </span>
-              </dd>
-            </div>
-          ))}
-        </dl>
       </Section>
 
-      <Section>
+      <Section fond="gris">
         <TitreSection
-          surtitre="Nos domaines"
-          titre="Développement · Échange · Production"
+          surtitre="Nos programmes"
+          titre="Cinq axes complémentaires"
           centre
         />
-        <div className="mt-14 grid gap-px bg-noir/10 sm:grid-cols-2 lg:grid-cols-4">
-          {piliers.map((p) => (
-            <CartePilier key={p.cle} icone={p.cle} titre={p.titre} texte={p.texte} />
+        <div className="mt-14 grid gap-px bg-noir/10 sm:grid-cols-2 lg:grid-cols-3">
+          {programmes.map((p) => (
+            <CartePilier
+              key={p.slug}
+              icone={p.icone}
+              titre={p.titre}
+              texte={p.accroche}
+            />
           ))}
         </div>
-        <div className="mt-12 text-center">
-          <Bouton href="/contact" taille="lg">
-            Échanger avec nos équipes
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <Bouton href="/programmes" taille="lg">
+            Explorer nos programmes
+            <Fleche className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Bouton>
+          <Bouton href="/adherer" variante="sombre" taille="lg">
+            Adhérer
           </Bouton>
         </div>
+        <p className="mt-12 text-center text-[0.8rem] uppercase tracking-[0.2em] text-anthracite/50">
+          {marque.nature} — {marque.territoires}
+        </p>
       </Section>
     </>
   );

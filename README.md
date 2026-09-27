@@ -25,7 +25,7 @@ npm run build   # build de production
 | §6 Boutons | `components/Bouton.tsx` — `principal`, `secondaire`, `sombre`, `clair` |
 | §7 Iconographie | `components/Icones.tsx` — les 8 icônes de la charte + icônes UI |
 | §8 Style photographique | `components/Visuel.tsx` — 4 ambiances |
-| §9 Page d'accueil | `app/page.tsx` — reprend la maquette (hero, bloc Afrique/Europe/France, CTA) |
+| §9 Page d'accueil | `app/page.tsx` — hero, bloc France/Afrique/Europe, deux boutons du document client |
 | §9 Fond du hero | photographie `public/hero-forum.jpg` + voile sombre dégradé, dans `app/page.tsx` |
 | §10 Ambiance | Bandeau doré « Des projets, des partenariats, un avenir partagé » en pied de page |
 
@@ -33,28 +33,86 @@ Les couleurs sont des tokens Tailwind : `bg-or`, `text-noir`, `border-anthracite
 
 ## Pages
 
-`/` · `/qui-sommes-nous` · `/programmes` · `/forum-meeting` · `/actualites`
-· `/partenaires` · `/contact` (+ page 404). Les 8 routes sont prérendues en statique.
+`/` · `/qui-sommes-nous` · `/programmes` · `/calendrier` · `/adherer`
+· `/faire-un-don` · `/actualites` · `/partenaires` · `/contact` (+ page 404).
+Toutes les routes sont prérendues en statique.
+
+« Adhérer » et « Faire un don » sont les deux appels à l'action de l'en-tête ;
+la navigation principale garde sept entrées.
+
+## Référencement
+
+Ce qui produit le résultat affiché par les moteurs de recherche :
+
+| Élément | Fichier | Rendu dans Google |
+|---|---|---|
+| `title` | `app/layout.tsx` | le lien bleu cliquable |
+| `description` | `app/layout.tsx` | le texte sous le lien |
+| JSON-LD `NGO` | `app/layout.tsx` | la fiche « organisation » |
+| `sitemap.xml` | `app/sitemap.ts` | liste des pages à explorer |
+| `robots.txt` | `public/robots.txt` | autorisation d'exploration **uniquement** |
+
+`robots.txt` ne détermine **pas** le titre ni le descriptif : il n'autorise ou
+n'interdit que l'exploration. Les lignes d'identité y figurent en commentaire,
+sans effet sur les résultats.
+
+Résultat visé sur `https://synergia-international.com` :
+
+```
+Association culturelle internationale | Synergia International
+https://synergia-international.com
+Créer le lien, unir les talents, la force d'un réseau intercontinental.
+Un réseau international au service du développement, des échanges et de
+la production artistique et culturelle.
+```
+
+Google reste libre de réécrire titre et descriptif s'il juge une autre
+formulation plus pertinente pour la requête.
+
+**Domaine canonique** : `https://synergia-international.com` (sans www). La
+forme `www.` doit rediriger vers celle-ci, sinon les deux se concurrencent.
+À configurer dans Vercel → Settings → Domains.
+
+## Sources du contenu
+
+Le contenu éditorial provient de deux documents fournis par le client, et il
+est repris **mot pour mot** dans `lib/contenu.ts` :
+
+- `SYNERGIA_Textes_page_accueil_et_boutons.pdf` — accroche d'accueil, libellés
+  des deux boutons, texte « Découvrir l'association », les cinq axes de
+  programmation ;
+- `Calendrier_previsionnel_activite_2026_2027_SYNERGIA.pdf` — saison culturelle
+  (9 spectacles), cadre général, coordonnées du siège.
+
+Synergia International est une **association culturelle internationale**
+(France • Afrique • Europe), et non un organisme de développement : tout texte
+évoquant filières, bailleurs ou ingénierie de financement serait hors sujet.
 
 ## Points à reprendre avant mise en ligne
 
-1. **Contraste de l'or** — l'or principal `#D9A21B` sur fond clair plafonne à
-   2,3:1, sous le seuil WCAG AA (4,5:1 pour le petit texte). Il est utilisé tel
-   quel par la classe `.surtitre` sur tout le site, conformément à la charte.
-   Sur le hero, les accents utilisent l'or sombre `#B8850F` (3,3:1), suffisant
-   pour le grand titre mais pas pour le petit texte. Arbitrage de marque à
-   trancher : conserver la charte à l'identique, ou assombrir l'or des petits
-   libellés.
-2. **Autres photographies** — `components/Visuel.tsx` rend des aplats dégradés
-   conformes à la charte. Passer la prop `src` pour basculer automatiquement sur
-   `next/image` : `<Visuel src="/photos/forum.jpg" alt="…" ambiance="evenement" />`
-3. **Formulaires** — contact et lettre d'information sont des formulaires HTML
-   sans back-end. Brancher une Server Action ou une API d'envoi.
-4. **Contenu** — textes, chiffres, événements et actualités sont centralisés
-   dans `lib/contenu.ts` et sont des exemples à remplacer par le contenu réel.
-5. **Logo** — les PNG sont générés depuis `syn_logo.jpg`, un JPG aplati. Si le
-   studio fournit un jour le SVG vectoriel d'origine, le substituer : il sera
-   plus net sur les écrans à forte densité et plus léger.
+1. **Partenaires** — la page n'affiche aucun nom : les salles du calendrier
+   (Olympia, quai Branly, La Cigale…) sont des lieux *pressentis*, « soumis aux
+   disponibilités, contrats de location et autorisations administratives ». Les
+   présenter comme partenaires serait faux. Remplacer par la liste réelle une
+   fois les accords signés et l'usage des logos autorisé.
+2. **Téléphones** — un seul numéro figure dans les documents (06 18 83 62 81).
+   Le client en a annoncé trois (siège, deux personnes) : les deux autres
+   manquent.
+3. **Adhésion** — les montants et catégories ne sont pas communiqués. La page
+   `/adherer` renvoie vers l'association pour les obtenir.
+4. **Don en ligne** — aucun prestataire de paiement n'est branché. La page
+   `/faire-un-don` oriente vers un contact direct.
+5. **Actualités** — les trois brèves de `lib/contenu.ts` sont rédigées à partir
+   du calendrier, mais ce ne sont pas de vrais communiqués. À remplacer.
+6. **Formulaires** — contact, adhésion et lettre d'information sont des
+   formulaires HTML sans back-end. Brancher une Server Action ou une API.
+7. **Baseline du logo** — le logo porte « DÉVELOPPEMENT-ECHANGE-PRODUCTION »,
+   tandis que le pied de page des documents récents indique « Conception -
+   production - management ». Incohérence à trancher côté marque.
+8. **Contraste de l'or** — l'or principal `#D9A21B` sur fond clair plafonne à
+   2,3:1, sous le seuil WCAG AA. Sur fond clair, le site utilise l'or sombre
+   `#B8850F` (3,3:1) ; la classe `.surtitre` utilise encore l'or principal,
+   conformément à la charte. Arbitrage de marque à trancher.
 
 ## Hero de la page d'accueil
 

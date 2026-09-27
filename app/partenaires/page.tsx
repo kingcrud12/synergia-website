@@ -9,26 +9,26 @@ import { categoriesPartenaires } from "@/lib/contenu";
 export const metadata: Metadata = {
   title: "Partenaires",
   description:
-    "Institutions, entreprises, investisseurs et organisations de terrain : le réseau de partenaires de Synergia International.",
+    "Institutions culturelles, salles, mécènes et partenaires médias : le réseau de Synergia International.",
 };
 
 const engagements = [
   {
     titre: "Ce que nous apportons",
     liste: [
-      "Un accès qualifié à un réseau de trois continents",
-      "Une connaissance fine des contextes locaux",
-      "Un accompagnement continu jusqu'à la livraison",
-      "Un reporting d'impact partagé et publiable",
+      "Un accès à un réseau artistique sur trois continents",
+      "Une connaissance fine des scènes et des publics",
+      "Un accompagnement de la conception à la scène",
+      "Une visibilité sur l'ensemble de la saison",
     ],
   },
   {
     titre: "Ce que nous attendons",
     liste: [
       "Un engagement inscrit dans la durée",
-      "Des moyens réels, humains ou financiers",
-      "La transparence sur les résultats obtenus",
-      "Le respect des acteurs et des territoires",
+      "Des moyens réels, humains, techniques ou financiers",
+      "La transparence sur les engagements pris",
+      "Le respect des artistes et des publics",
     ],
   },
 ];
@@ -45,14 +45,14 @@ export default function Partenaires() {
             <span className="italic text-or">qui tiennent</span>
           </>
         }
-        chapo="Notre réseau réunit des institutions publiques, des entreprises, des investisseurs et des organisations de terrain qui engagent des moyens réels sur des projets vérifiables."
+        chapo="Notre réseau réunit les institutions culturelles, les salles, les mécènes et les partenaires médias qui accompagnent la saison culturelle de l'association."
       />
 
       <Section>
         <TitreSection
           surtitre="Notre écosystème"
           titre="Trois familles d'acteurs"
-          chapo="Chaque projet mobilise ces trois familles. C'est leur articulation, et non leur simple juxtaposition, qui produit des résultats."
+          chapo="Chaque rendez-vous mobilise ces trois familles. C'est leur articulation qui permet à un spectacle d'exister."
           centre
         />
         <div className="mt-14 grid gap-px bg-noir/10 lg:grid-cols-3">
@@ -77,7 +77,7 @@ export default function Partenaires() {
           ))}
         </div>
         <p className="mt-8 text-center text-[0.78rem] text-anthracite/50">
-          Les logotypes de nos partenaires sont affichés avec leur accord.
+          Liste en cours de constitution. Les logotypes ne seront affichés qu'avec l'accord écrit de chaque partenaire.
         </p>
       </Section>
 

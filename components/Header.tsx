@@ -68,8 +68,11 @@ export default function Header() {
           >
             <Recherche className="h-[1.15rem] w-[1.15rem]" />
           </button>
-          <Bouton href="/contact" className="hidden sm:inline-flex">
-            Nous contacter
+          <Bouton href="/adherer" variante="secondaire" className="hidden lg:inline-flex">
+            Adhérer
+          </Bouton>
+          <Bouton href="/faire-un-don" className="hidden sm:inline-flex">
+            Faire un don
           </Bouton>
           <button
             type="button"
@@ -106,9 +109,14 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <Bouton href="/contact" className="mt-5 w-full sm:hidden">
-            Nous contacter
-          </Bouton>
+          <div className="mt-5 grid gap-3 lg:hidden">
+            <Bouton href="/adherer" variante="secondaire" className="w-full">
+              Adhérer
+            </Bouton>
+            <Bouton href="/faire-un-don" className="w-full sm:hidden">
+              Faire un don
+            </Bouton>
+          </div>
         </Conteneur>
       </div>
     </header>

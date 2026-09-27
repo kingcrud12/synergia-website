@@ -1,0 +1,14 @@
+# SYNERGIA INTERNATIONAL
+# Association culturelle internationale
+# Créer le lien, unir les talents — La force d'un réseau intercontinental.
+# Un réseau international au service du développement, des échanges
+# et de la production artistique et culturelle.
+#
+# Note : ces lignes sont des commentaires. Les moteurs de recherche les
+# ignorent. Le titre et le descriptif affichés dans les résultats sont
+# définis par les métadonnées de app/layout.tsx.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://synergia-international.com/sitemap.xml

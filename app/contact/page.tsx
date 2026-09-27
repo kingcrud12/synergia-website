@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Hero from "@/components/Hero";
 import Section, { TitreSection } from "@/components/Section";
 import Bouton from "@/components/Bouton";
@@ -11,10 +12,10 @@ export const metadata: Metadata = {
     "Contacter Synergia International : déposer un projet, proposer un partenariat ou s'inscrire à un forum.",
 };
 
-const bureaux = [
-  { ville: "Paris", pays: "France", detail: "Siège — 12 avenue des Nations" },
-  { ville: "Abidjan", pays: "Côte d'Ivoire", detail: "Bureau régional Afrique de l'Ouest" },
-  { ville: "Casablanca", pays: "Maroc", detail: "Bureau régional Maghreb" },
+const renseignements = [
+  { intitule: "Adhésion", detail: "Rejoindre l'association", href: "/adherer" },
+  { intitule: "Don et mécénat", detail: "Soutenir la saison", href: "/faire-un-don" },
+  { intitule: "Programmation", detail: "Calendrier des événements", href: "/calendrier" },
 ];
 
 const champ =
@@ -95,7 +96,10 @@ export default function Contact() {
                       {p.titre}
                     </option>
                   ))}
-                  <option value="forum">Inscription à un forum / meeting</option>
+                  <option value="adhesion">Adhésion à l&apos;association</option>
+                  <option value="don">Don ou mécénat</option>
+                  <option value="programmation">Programmation et billetterie</option>
+                  <option value="artiste">Proposition artistique</option>
                   <option value="partenariat">Proposition de partenariat</option>
                   <option value="presse">Demande presse</option>
                   <option value="autre">Autre</option>
@@ -119,7 +123,7 @@ export default function Contact() {
                   name="consentement"
                   type="checkbox"
                   required
-                  className="mt-1 h-4 w-4 shrink-0 accent-[#d9a21b]"
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#b8850f]"
                 />
                 <label
                   htmlFor="consentement"
@@ -166,25 +170,23 @@ export default function Contact() {
                 </li>
               </ul>
               <p className="mt-8 border-t border-blanc/15 pt-6 text-[0.8rem] leading-[1.7] text-blanc/50">
-                Accueil du lundi au vendredi, de 9h à 18h (heure de Paris).
+                Association culturelle internationale — France, Afrique, Europe.
               </p>
             </div>
 
             <div>
-              <h2 className="surtitre">Nos bureaux</h2>
+              <h2 className="surtitre">Vous cherchez</h2>
               <ul className="mt-6 divide-y divide-noir/10 border-y border-noir/10">
-                {bureaux.map((b) => (
-                  <li key={b.ville} className="py-5">
-                    <p className="titre text-[1.35rem] text-noir">
-                      {b.ville}
-                      <span className="text-or"> · </span>
-                      <span className="text-[0.95rem] text-anthracite/60">
-                        {b.pays}
-                      </span>
-                    </p>
-                    <p className="mt-1 text-[0.82rem] text-anthracite/65">
-                      {b.detail}
-                    </p>
+                {renseignements.map((r) => (
+                  <li key={r.intitule}>
+                    <Link href={r.href} className="group block py-5">
+                      <p className="titre text-[1.35rem] text-noir transition-colors group-hover:text-or-sombre">
+                        {r.intitule}
+                      </p>
+                      <p className="mt-1 text-[0.82rem] text-anthracite/65">
+                        {r.detail}
+                      </p>
+                    </Link>
                   </li>
                 ))}
               </ul>

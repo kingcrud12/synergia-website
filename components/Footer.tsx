@@ -13,16 +13,24 @@ export default function Footer() {
       <div className="bg-or">
         <Conteneur className="flex flex-col items-start gap-6 py-10 md:flex-row md:items-center md:justify-between">
           <p className="titre text-[1.75rem] leading-tight text-noir sm:text-[2.1rem]">
-            Des projets, des partenariats,
+            Créer le lien, unir les talents :
             <br />
-            <span className="italic">un avenir partagé.</span>
+            <span className="italic">la force d&apos;un réseau intercontinental.</span>
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 border border-noir px-7 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.13em] text-noir transition-colors hover:bg-noir hover:text-or"
-          >
-            Construire avec nous
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/adherer"
+              className="inline-flex items-center gap-3 border border-noir px-7 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.13em] text-noir transition-colors hover:bg-noir hover:text-or"
+            >
+              Adhérer
+            </Link>
+            <Link
+              href="/faire-un-don"
+              className="inline-flex items-center gap-3 bg-noir px-7 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.13em] text-or transition-colors hover:bg-anthracite"
+            >
+              Faire un don
+            </Link>
+          </div>
         </Conteneur>
       </div>
 
@@ -30,8 +38,9 @@ export default function Footer() {
         <div className="lg:col-span-1">
           <Logo variante="complete" invert className="h-[104px] w-auto" />
           <p className="mt-6 max-w-xs text-[0.85rem] leading-[1.8] text-blanc/60">
-            {marque.signature}. Un réseau international au service du
-            développement, des échanges et de la production.
+            {marque.nature} — {marque.territoires}. Un réseau international au
+            service du développement, des échanges et de la production
+            artistique et culturelle.
           </p>
         </div>
 
